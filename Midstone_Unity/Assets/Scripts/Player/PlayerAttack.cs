@@ -5,11 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerAttack : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private PlayerMovement pm;
 
     private Vector2 attackDirection = new Vector2(1, 0);
     private float attackTimer = 0;
-    private float projectileAttackForce = 1500.0f;
+    public float projectileSpeed;
 
     [Header("Attack parameters")]
     public float attackInterval = 1.5f;
@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -34,13 +34,14 @@ public class PlayerAttack : MonoBehaviour
     private void FixedUpdate()
     {
         //Sets the attack direction to the velocity direction
-        if (rb.velocity != Vector2.zero)
-            attackDirection = rb.velocity.normalized;
+        if (pm.attackDirection != Vector2.zero)
+            attackDirection = pm.attackDirection;
     }
 
     private void Attack()
     {
-        Rigidbody2D newProjectile = Instantiate(projectilePrefab, rb.transform);
-        newProjectile.AddForce(attackDirection * projectileAttackForce);
+        Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 1.5f, 1);
+        Rigidbody2D newProjectile = Instantiate(projectilePrefab, spawnPoint, Quaternion.identity);
+        newProjectile.AddForce(attackDirection * projectileSpeed, ForceMode2D.Impulse);
     }
 }

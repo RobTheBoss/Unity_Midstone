@@ -212,7 +212,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3925394392347706792, guid: d2b29d10e83362447a4248727a99c705, type: 3}
@@ -264,7 +263,6 @@ PrefabInstance:
       value: Ghost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d2b29d10e83362447a4248727a99c705, type: 3}
 --- !u!1 &756419634
 GameObject:
@@ -355,7 +353,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2919556714783261929, guid: b89fe84935210e14fb34fd45269aae5e, type: 3}
@@ -407,7 +404,6 @@ PrefabInstance:
       value: Zombie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b89fe84935210e14fb34fd45269aae5e, type: 3}
 --- !u!1 &894847531
 GameObject:
@@ -503,7 +499,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1762614715698093638, guid: 9ba3d8371b8d6b048a83f07ccd806a35, type: 3}
@@ -555,7 +550,6 @@ PrefabInstance:
       value: Skeleton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ba3d8371b8d6b048a83f07ccd806a35, type: 3}
 --- !u!1 &1116351039 stripped
 GameObject:
@@ -574,14 +568,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb2350b7db725742b3c4c056cd23b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 0.5
+  projectileSpeed: 6
+  attackInterval: 1.5
   projectilePrefab: {fileID: 7786661772336484453, guid: 53ef6347a53137742a334e9da060d523, type: 3}
+--- !u!95 &1116351049
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116351039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98dbd359f80cb6743ac2c9770bb2cae3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1133158328
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 529610192178066686, guid: 8f39df02d339d704da2f7650b056cfde, type: 3}
@@ -600,6 +614,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.5269668
       objectReference: {fileID: 0}
+    - target: {fileID: 4256519158043756152, guid: 8f39df02d339d704da2f7650b056cfde, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1923568810, guid: 0168d767fd077a449a26c3bdf8da776e, type: 3}
     - target: {fileID: 4256519158043756153, guid: 8f39df02d339d704da2f7650b056cfde, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -673,8 +691,4 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4256519158043756153, guid: 8f39df02d339d704da2f7650b056cfde, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 519420032}
   m_SourcePrefab: {fileID: 100100000, guid: 8f39df02d339d704da2f7650b056cfde, type: 3}
