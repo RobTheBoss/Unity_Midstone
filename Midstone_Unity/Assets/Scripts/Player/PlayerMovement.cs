@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 moveDirection;
-    private Vector2 attackDirection;
 
     [Header("Movement variables")]
     [SerializeField] float accelForce;
@@ -75,9 +74,5 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-
-        //Sets the attack direction to the velocity direction
-        if (rb.velocity != Vector2.zero)
-            attackDirection = rb.velocity.normalized;
     }
 }
