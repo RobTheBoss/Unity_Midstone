@@ -43,5 +43,6 @@ public class PlayerAttack : MonoBehaviour
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 1.5f, 1);
         Rigidbody2D newProjectile = Instantiate(projectilePrefab, spawnPoint, Quaternion.identity);
         newProjectile.AddForce(attackDirection * projectileSpeed, ForceMode2D.Impulse);
+        
     }
 }
