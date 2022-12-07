@@ -10,11 +10,16 @@ public abstract class BaseEnemy : MonoBehaviour
     public float damage;
     public float speed;
 
+<<<<<<< Updated upstream
     public static int enemyKillCounter;
     public TextMeshProUGUI enemyKillCounterText;
 
     private Transform target;
     private Rigidbody2D rb;
+=======
+    protected Transform target;
+    protected Rigidbody2D rb;
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     virtual protected void Start()
@@ -27,7 +32,6 @@ public abstract class BaseEnemy : MonoBehaviour
     virtual protected void Update()
     {
         Attack();
-        
     }
 
     virtual protected void Attack()

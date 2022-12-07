@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeleton : MonoBehaviour
+public class Skeleton : BaseEnemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float retreatDistance;
+    [SerializeField] private float chaseDistance;
+    protected override void Attack()
     {
-        
-    }
+        Vector2 dir = (target.position - transform.position).normalized;
+        float distance = (target.position - transform.position).magnitude;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //moves towards player
+        if (distance > chaseDistance)
+            rb.velocity = dir * speed;
+
+        //moves away from player
+        else if (distance < retreatDistance)
+            rb.velocity = -dir * speed;
+
+        else
+            rb.velocity = Vector2.zero;
     }
 }
