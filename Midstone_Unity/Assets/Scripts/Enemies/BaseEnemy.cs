@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseEnemy : MonoBehaviour
@@ -8,6 +9,9 @@ public abstract class BaseEnemy : MonoBehaviour
     public float health;
     public float damage;
     public float speed;
+
+    public static int enemyKillCounter;
+    public TextMeshProUGUI enemyKillCounterText;
 
     private Transform target;
     private Rigidbody2D rb;
