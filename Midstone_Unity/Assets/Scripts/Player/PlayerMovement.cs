@@ -11,9 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 attackDirection;
 
     [Header("Movement variables")]
-    [SerializeField] float accelForce;
-    [SerializeField] float frictionForce;
-    [SerializeField] float maxSpeed;
+    [SerializeField] float speed;
 
     [Header("Boundaries")]
     public Vector2 minPlayerBounds;
@@ -54,42 +52,10 @@ public class PlayerMovement : MonoBehaviour
             anim.SetTrigger("FaceBack");
         else if (moveDirection.y == -1)
             anim.SetTrigger("FaceFront");
-    }
 
-    private void FixedUpdate()
-    {
-        //Adds force in direction player is moving
-        rb.AddForce(moveDirection * accelForce);
+        rb.velocity = moveDirection * speed;
 
         if (rb.velocity != Vector2.zero)
             attackDirection = rb.velocity.normalized;
-
-        if (moveDirection.x == 0 && rb.velocity.x != 0 || Mathf.Sign(moveDirection.x) != Mathf.Sign(rb.velocity.x)) //if no input or opposing current x movement
-        {
-            float frictionForceX = Mathf.Sign(rb.velocity.x) * -frictionForce * Time.fixedDeltaTime;
-
-            //makes sure friction force gets the player velocity on exactly 0 and not past it
-            if (Mathf.Abs(frictionForceX) >= Mathf.Abs(rb.velocity.x))
-                frictionForceX = -rb.velocity.x;
-
-            rb.AddForce(new Vector2(frictionForceX, 0), ForceMode2D.Impulse);
-        }
-
-        if (moveDirection.y == 0 && rb.velocity.y != 0 || Mathf.Sign(moveDirection.y) != Mathf.Sign(rb.velocity.y)) //if no input or opposing current y movement
-        {
-            float frictionForceY = Mathf.Sign(rb.velocity.y) * -frictionForce * Time.fixedDeltaTime;
-
-            //makes sure friction force gets the player velocity on exactly 0 and not past it
-            if (Mathf.Abs(frictionForceY) >= Mathf.Abs(rb.velocity.y))
-                frictionForceY = -rb.velocity.y;
-
-            rb.AddForce(new Vector2(0, frictionForceY), ForceMode2D.Impulse);
-        }
-
-        //Sets a speed cap
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
     }
 }

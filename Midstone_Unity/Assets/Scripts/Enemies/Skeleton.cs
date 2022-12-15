@@ -4,8 +4,37 @@ using UnityEngine;
 
 public class Skeleton : BaseEnemy
 {
+    [SerializeField] GameObject boneProjectile;
     [SerializeField] private float retreatDistance;
     [SerializeField] private float chaseDistance;
+
+    [SerializeField] private float projCooldown;
+
+    private float projTimer;
+
+    override protected void Start()
+    {
+        base.Start();
+        projTimer = projCooldown;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (projTimer > 0)
+            projTimer -= Time.deltaTime;
+        else
+        {
+            GameObject temp = Instantiate(boneProjectile, transform.position, Quaternion.identity);
+            if (temp.TryGetComponent(out SkelProjectile proj))
+            {
+                proj.direction = (target.position - transform.position).normalized;
+            }
+
+            projTimer = projCooldown;
+        }
+    }
     protected override void Attack()
     {
         Vector2 dir = (target.position - transform.position).normalized;

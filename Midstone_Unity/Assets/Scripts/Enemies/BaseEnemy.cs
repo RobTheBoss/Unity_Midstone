@@ -35,11 +35,24 @@ public abstract class BaseEnemy : MonoBehaviour
         rb.velocity = dir * speed;
     }
 
-    virtual protected void OnCollisionEnter2D(Collision2D collision)
+    public void TakeDamage(int damage_)
+    {
+        health -= damage_;
+
+        if (health <= 0)
+            Destroy(this.gameObject);
+    }
+
+    virtual protected void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Vector2 dir = (target.position - transform.position).normalized;
+
+            rb.velocity = -dir * speed;
+
             //player takes damage
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage * Time.deltaTime);
         }
     }
 }

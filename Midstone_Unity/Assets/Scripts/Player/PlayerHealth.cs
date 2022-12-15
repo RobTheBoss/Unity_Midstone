@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour 
 {
 	public int maxHealth;
-	public int health;
+	public float health;
 	public GameObject gameOverCanvas;
 
 	// Starts before the first frame
@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
             Time.timeScale = 1;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         Debug.Log("Hp = " + health.ToString());

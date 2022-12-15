@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector2 attackDirection = new Vector2(1, 0);
     private float attackTimer = 0;
+
+    [SerializeField] GameObject projPrefab;
     public float projectileSpeed;
 
     [Header("Attack parameters")]
@@ -41,8 +43,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 1.5f, 1);
-        Rigidbody2D newProjectile = Instantiate(projectilePrefab, spawnPoint, Quaternion.identity);
-        newProjectile.AddForce(attackDirection * projectileSpeed, ForceMode2D.Impulse);
-        
+        GameObject newProjectile = Instantiate(projPrefab, spawnPoint, Quaternion.identity);
+        newProjectile.GetComponent<PlayerProjectile>().direction = attackDirection;
     }
 }
