@@ -751,9 +751,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Rajvir - HUD, Custom Text, Title Screen, Buttons, Collectable and Power-up,
     Timer, Health and Healthbar Coding, MainMenu, LoseScreen, Cedits\r\n\r\nGage:
-    Sprites\r\n\r\nGergely: Character Projectile spawning\r\n\r\nRobert: Enemy AI
-    (Attacking, Moving), Animations, Player scaling, Enemy scaling, Enemy spawner,
-    Player Movement \r\n"
+    Sprites\r\n\r\nGergely: Character Projectile spawning ; implementing sound and
+    music; bugfixing\n\r\nRobert: Enemy AI (Attacking, Moving), Animations, Player
+    scaling, Enemy scaling, Enemy spawner, Player Movement \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
