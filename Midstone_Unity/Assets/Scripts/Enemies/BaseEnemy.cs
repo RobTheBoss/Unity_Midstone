@@ -15,6 +15,8 @@ public abstract class BaseEnemy : MonoBehaviour
     protected Transform target;
     protected Rigidbody2D rb;
 
+    public bool frozen = false;
+
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -30,9 +32,18 @@ public abstract class BaseEnemy : MonoBehaviour
 
     virtual protected void Attack()
     {
-        Vector2 dir = (target.position - transform.position).normalized;
 
-        rb.velocity = dir * speed;
+        if (!frozen)
+        {
+            Vector2 dir = (target.position - transform.position).normalized;
+
+            rb.velocity = dir * speed;
+        }
+
+        if (frozen)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     public void TakeDamage(int damage_)

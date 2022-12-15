@@ -46,7 +46,6 @@ public class EnemySpawner : MonoBehaviour
         if (spawnCooldown <= 0.1f)
             spawnCooldown = 0.1f;
 
-        Debug.Log(spawnCooldown);
 
         //Spawns random enemy
         if (spawnTimer > 0)

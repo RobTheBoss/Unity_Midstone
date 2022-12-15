@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject CreditsPanelCanvas;
+
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -23,5 +25,9 @@ public class ButtonManager : MonoBehaviour
     public void QuitGameScene()
     {
         Application.Quit();
+    }
+    public void CreditsGameScene()
+    {
+        CreditsPanelCanvas.SetActive(true);
     }
 }

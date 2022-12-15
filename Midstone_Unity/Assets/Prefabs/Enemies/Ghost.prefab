@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 17
-  damage: 10
+  damage: 50
   speed: 0.5
   enemyKillCounterText: {fileID: 0}

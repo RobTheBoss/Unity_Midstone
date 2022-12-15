@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         currentTime = currentTime += Time.deltaTime;
-        //timerText.text = currentTime.ToString("0.00");
-        //timerDeathText.text = currentTime.ToString("0.00");
+        timerText.text = currentTime.ToString("0.00");
+        timerDeathText.text = currentTime.ToString("0.00");
     }
 }

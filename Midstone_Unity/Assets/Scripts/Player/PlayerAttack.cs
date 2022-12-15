@@ -52,16 +52,16 @@ public class PlayerAttack : MonoBehaviour
 
     public void LevelUp()
     {
-        float scaleMultiplier = 1.03f;
+        float scaleMultiplier = 1.07f;
 
         //scales projectile speed
-        if (projectileSpeed <= 25.0f)
+        if (projectileSpeed <= 40.0f)
             projectileSpeed *= scaleMultiplier;
         else
-            projectileSpeed = 25f;
+            projectileSpeed = 40f;
 
         //scales projectile spawn cooldown
-        scaleMultiplier = 1.04f;
+        scaleMultiplier = 1.05f;
         if (attackInterval > 0.1f)
             attackInterval /= scaleMultiplier;
         else

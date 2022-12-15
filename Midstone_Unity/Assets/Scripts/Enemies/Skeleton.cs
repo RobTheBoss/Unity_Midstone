@@ -20,20 +20,26 @@ public class Skeleton : BaseEnemy
 
     protected override void Update()
     {
-        base.Update();
-
-        if (projTimer > 0)
-            projTimer -= Time.deltaTime;
-        else
+        if (!frozen)
         {
-            GameObject temp = Instantiate(boneProjectile, transform.position, Quaternion.identity);
-            if (temp.TryGetComponent(out SkelProjectile proj))
-            {
-                proj.direction = (target.position - transform.position).normalized;
-            }
+            base.Update();
 
-            projTimer = projCooldown;
+            if (projTimer > 0)
+                projTimer -= Time.deltaTime;
+            else
+            {
+                GameObject temp = Instantiate(boneProjectile, transform.position, Quaternion.identity);
+                if (temp.TryGetComponent(out SkelProjectile proj))
+                {
+                    proj.direction = (target.position - transform.position).normalized;
+                }
+
+                projTimer = projCooldown;
+            }
         }
+
+        if (frozen)
+            rb.velocity = Vector2.zero;
     }
     protected override void Attack()
     {
