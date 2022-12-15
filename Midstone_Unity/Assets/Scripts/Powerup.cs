@@ -27,14 +27,13 @@ public class Powerup : MonoBehaviour
         if (!timerActive)
             return;
 
-        if (freezeTimer < 0 && freezeTimer + Time.deltaTime >= 0)
+        if (freezeTimer < 0)
         {
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject enemy in enemies)
             {
-                if (enemy != null)
-                    enemy.GetComponent<BaseEnemy>().frozen = false;
+                enemy.GetComponent<BaseEnemy>().frozen = false;
             }
 
             timeToDelete = true;
@@ -44,6 +43,7 @@ public class Powerup : MonoBehaviour
             freezeTimer -= Time.deltaTime;
         }
 
+        Debug.Log(freezeTimer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +56,13 @@ public class Powerup : MonoBehaviour
             foreach (GameObject enemy in enemies)
             {
                 enemy.GetComponent<BaseEnemy>().frozen = true;
+            }
+
+            GameObject[] freezeThings = GameObject.FindGameObjectsWithTag("Freeze");
+            foreach (GameObject freeze in freezeThings)
+            {
+                if (freeze != this.gameObject)
+                    Destroy(freeze);
             }
 
             timerActive = true;

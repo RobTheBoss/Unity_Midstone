@@ -11,6 +11,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public float speed;
 
     public TextMeshProUGUI enemyKillCounterText;
+    public PlayerStats playerStats;
 
     protected Transform target;
     protected Rigidbody2D rb;
@@ -25,6 +26,8 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+
+        playerStats = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -56,6 +59,7 @@ public abstract class BaseEnemy : MonoBehaviour
         if (health <= 0)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().LevelUp(this);
+            playerStats.AddKill();
             Destroy(this.gameObject);
         }
     }

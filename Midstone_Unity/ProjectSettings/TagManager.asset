@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - Rob
+  - Freeze
+  - GameManager
   layers:
   - Default
   - TransparentFX

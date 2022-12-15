@@ -14,8 +14,10 @@ public class ButtonManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        //SceneManager.LoadScene(0);
-        CreditsPanelCanvas.SetActive(false);
+        if (CreditsPanelCanvas != null)
+            CreditsPanelCanvas.SetActive(false);
+        
+        SceneManager.LoadScene(0);
     }
 
     public void StartGameScene()
