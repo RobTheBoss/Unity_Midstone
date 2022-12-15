@@ -40,7 +40,10 @@ public abstract class BaseEnemy : MonoBehaviour
         health -= damage_;
 
         if (health <= 0)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().LevelUp();
             Destroy(this.gameObject);
+        }
     }
 
     virtual protected void OnCollisionStay2D(Collision2D collision)

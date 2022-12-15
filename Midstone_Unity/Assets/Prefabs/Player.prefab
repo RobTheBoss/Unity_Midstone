@@ -255,9 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDirection: {x: 0, y: 0}
-  accelForce: 20
-  frictionForce: 20
-  maxSpeed: 4
+  speed: 4
   minPlayerBounds: {x: -38, y: -15.5}
   maxPlayerBounds: {x: 45, y: 13.4}
 --- !u!114 &1116351044
@@ -272,7 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb2350b7db725742b3c4c056cd23b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 6
+  projPrefab: {fileID: 7786661772336484452, guid: 53ef6347a53137742a334e9da060d523, type: 3}
+  projectileSpeed: 4.5
   attackInterval: 1.5
   projectilePrefab: {fileID: 7786661772336484453, guid: 53ef6347a53137742a334e9da060d523, type: 3}
 --- !u!114 &1116351054

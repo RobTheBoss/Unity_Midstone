@@ -9,9 +9,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyPrefabs;
 
     [SerializeField] float originalSpawnCooldown;
+    float spawnCooldown;
     float spawnTimer;
 
     private Transform playerPos;
+
+    float hpMultiplier = 1f;
+    public Timer timer;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,28 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Sets scaling multipliers based on time
+        if (hpMultiplier > 6)
+            hpMultiplier = 6;
+        else
+        {
+            float healthScalingReducer = 150f;
+            hpMultiplier = 1 + (timer.currentTime / healthScalingReducer);
+        }
+
+        float timeScale = 300.0f;
+        float spawnSpeedPercent = timer.currentTime / timeScale;
+
+        if (spawnSpeedPercent >= 1.0f)
+            spawnSpeedPercent = 1.0f;
+
+        spawnCooldown = originalSpawnCooldown - (originalSpawnCooldown * spawnSpeedPercent);
+        if (spawnCooldown <= 0.1f)
+            spawnCooldown = 0.1f;
+
+        Debug.Log(spawnCooldown);
+
+        //Spawns random enemy
         if (spawnTimer > 0)
         {
             spawnTimer -= Time.deltaTime;
@@ -39,9 +65,12 @@ public class EnemySpawner : MonoBehaviour
             Vector2 spawnPosition = (Vector2)playerPos.position + (spawnDirection * spawnDistance);
             spawnPosition = spawnPosition.normalized * spawnDistance;
 
-            Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+            GameObject enemyInstance = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
 
-            spawnTimer = originalSpawnCooldown;
+            //scaling
+            enemyInstance.GetComponent<BaseEnemy>().health *= hpMultiplier;
+
+            spawnTimer = spawnCooldown;
         }
     }
 }
