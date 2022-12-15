@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour 
 {
-	public int maxHealth;
+    private AudioSource audioSource;
+    
+    public int maxHealth;
 	public float health;
 	public GameObject gameOverCanvas;
 
-	// Starts before the first frame
+    [Header("Sounds")]
+    public AudioClip playerDieSound;
 
-	void Start()
+    // Starts before the first frame
+
+    void Start()
 	{
-		health = maxHealth;
+        audioSource = GetComponent<AudioSource>();
+        
+        health = maxHealth;
 
 		Time.timeScale = 1;
 	}
@@ -25,9 +32,13 @@ public class PlayerHealth : MonoBehaviour
             Time.timeScale = 0;
             gameOverCanvas.SetActive(true);
             //BaseEnemy.enemyKillCounter = 0;
+            audioSource.PlayOneShot(playerDieSound);
+            this.enabled = false;
         }
         else
+        {
             Time.timeScale = 1;
+        }
     }
 
     public void TakeDamage(float damage)

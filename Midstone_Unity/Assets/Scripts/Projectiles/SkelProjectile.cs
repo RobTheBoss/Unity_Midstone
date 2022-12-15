@@ -38,7 +38,7 @@ public class SkelProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

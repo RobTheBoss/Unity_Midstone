@@ -6,8 +6,12 @@ public class PowerupSpawner : MonoBehaviour
 {
     public GameObject nICE;
 
+    private AudioSource audioSource;
+
     private float spawnCooldown = 40;
     private float spawnTimer;
+
+    public AudioClip pickUpSound;
 
     [Header("Boundaries")]
     public Vector2 minBounds;
@@ -16,6 +20,7 @@ public class PowerupSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         spawnTimer = spawnCooldown;
     }
 
@@ -39,5 +44,7 @@ public class PowerupSpawner : MonoBehaviour
         float yPos = Random.Range(minBounds.y, maxBounds.y);
 
         Instantiate(nICE, new Vector2(xPos, yPos), Quaternion.identity);
+
+        audioSource.PlayOneShot(pickUpSound);
     }
 }

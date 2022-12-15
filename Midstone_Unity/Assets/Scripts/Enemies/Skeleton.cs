@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Skeleton : BaseEnemy
 {
+    private AudioSource audioSource;
+
+    public AudioClip enemyAttackSound;
+
+    [Header("SkeletonParameters")]
     [SerializeField] GameObject boneProjectile;
     [SerializeField] private float retreatDistance;
     [SerializeField] private float chaseDistance;
@@ -16,6 +21,7 @@ public class Skeleton : BaseEnemy
     {
         base.Start();
         projTimer = projCooldown;
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected override void Update()
@@ -28,6 +34,7 @@ public class Skeleton : BaseEnemy
                 projTimer -= Time.deltaTime;
             else
             {
+                audioSource.PlayOneShot(enemyAttackSound);
                 GameObject temp = Instantiate(boneProjectile, transform.position, Quaternion.identity);
                 if (temp.TryGetComponent(out SkelProjectile proj))
                 {
@@ -43,6 +50,7 @@ public class Skeleton : BaseEnemy
     }
     protected override void Attack()
     {
+        
         Vector2 dir = (target.position - transform.position).normalized;
         float distance = (target.position - transform.position).magnitude;
 

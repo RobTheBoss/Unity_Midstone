@@ -6,8 +6,12 @@ public class CollectibleSpawner : MonoBehaviour
 {
     public GameObject faceMe;
 
+    private AudioSource audioSource;
+
     private float spawnCooldown;
     private float spawnTimer;
+
+    public AudioClip pickUpSound;
 
     [Header("Boundaries")]
     public Vector2 minBounds;
@@ -16,6 +20,7 @@ public class CollectibleSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         spawnCooldown = Random.Range(60, 180);
         spawnTimer = spawnCooldown;
     }
@@ -26,6 +31,7 @@ public class CollectibleSpawner : MonoBehaviour
         if (spawnTimer < 0)
         {
             SpawnPowerup();
+            this.enabled = false;
         }
         else
         {
@@ -39,7 +45,6 @@ public class CollectibleSpawner : MonoBehaviour
         float yPos = Random.Range(minBounds.y, maxBounds.y);
 
         Instantiate(faceMe, new Vector2(xPos, yPos), Quaternion.identity);
-
-        Destroy(this);
+        audioSource.PlayOneShot(pickUpSound);
     }
 }

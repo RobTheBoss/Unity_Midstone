@@ -150,3 +150,5 @@ MonoBehaviour:
   damage: 50
   speed: 0.5
   enemyKillCounterText: {fileID: 0}
+  frozen: 0
+  enemyDieSound: {fileID: 8300000, guid: 6cc0def4123aa394493f41032157b4d4, type: 3}

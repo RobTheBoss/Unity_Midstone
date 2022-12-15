@@ -17,6 +17,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public bool frozen = false;
 
+    [Header("Sounds")]
+    public AudioClip enemyDieSound;
+
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -52,7 +55,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
         if (health <= 0)
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().LevelUp();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().LevelUp(this);
             Destroy(this.gameObject);
         }
     }

@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerMovement pm;
 
+    private AudioSource audioSource;
+
     private Vector2 attackDirection = new Vector2(1, 0);
 
     [SerializeField] GameObject projPrefab;
@@ -18,10 +20,14 @@ public class PlayerAttack : MonoBehaviour
     private float attackTimer = 0;
     public Rigidbody2D projectilePrefab;
 
+    [Header("Sounds")]
+    public AudioClip attackSound;
+
     // Start is called before the first frame update
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,10 +54,12 @@ public class PlayerAttack : MonoBehaviour
         newProjectile.GetComponent<PlayerProjectile>().direction = attackDirection;
         newProjectile.GetComponent<PlayerProjectile>().speed = projectileSpeed;
         newProjectile.transform.localScale = new Vector3(projectileScale, projectileScale, projectileScale);
+        audioSource.PlayOneShot(attackSound);
     }
 
-    public void LevelUp()
+    public void LevelUp(BaseEnemy enemy)
     {
+        audioSource.PlayOneShot(enemy.enemyDieSound);
         float scaleMultiplier = 1.07f;
 
         //scales projectile speed
